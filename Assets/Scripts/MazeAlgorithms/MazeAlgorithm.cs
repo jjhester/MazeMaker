@@ -2,14 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 public abstract class MazeAlgorithm {
-   protected bool[][] mazeGrid;
+   protected Perimeter[,] mazeGrid;
    protected int width, height;
 
-   abstract public void generate ( int width, int height );
+   abstract public void Generate ( GameObject[,] mazeObject );
 
-   public bool[][] Maze {
-	 get { return mazeGrid;}
-   }
-	
 }
 

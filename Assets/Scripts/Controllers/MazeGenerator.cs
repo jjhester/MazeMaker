@@ -16,20 +16,27 @@ public class MazeGenerator : MonoBehaviour {
 		  curTile.gameObject.transform.parent = this.gameObject.transform;
 		  curTile.gameObject.name = string.Format("Tile({0},{1})", r, c);
 		  this.tiles [r, c] = curTile;
-		  Debug.Log(this.tiles [r, c]);
-		  //Handle walls
-		  Perimeter walls = curTile.GetComponent<Perimeter>();
-		  walls [Direction.NORTH] = r == 0;
-		  walls [Direction.SOUTH] = r == height - 1;
-		  walls [Direction.WEST] = c == 0;
-		  walls [Direction.EAST] = c == width - 1;
+		  //Debug.Log(this.tiles [r, c]);
+//		  //Handle walls
+//		  Perimeter walls = curTile.GetComponent<Perimeter>();
+//		  walls [Direction.NORTH] = ma.Maze [r, c, (int)Direction.NORTH];
+//		  walls [Direction.SOUTH] = ma.Maze [r, c, (int)Direction.SOUTH];
+//		  walls [Direction.WEST] = ma.Maze [r, c, (int)Direction.WEST];
+//		  walls [Direction.EAST] = ma.Maze [r, c, (int)Direction.EAST];
 	    }
 	 }
+	 GenerateMaze();
    }
 
    // Use this for initialization
+   public void GenerateMaze () {
+	 //Generate maze
+	 MazeAlgorithm ma = new RecursiveDivisionAlgorithm();
+	 ma.Generate(tiles);
+   }
    void Start () {
 	 LoadTiles();
+	 
    }
 	
    // Update is called once per frame

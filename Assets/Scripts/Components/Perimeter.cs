@@ -24,6 +24,9 @@ public class Perimeter : MonoBehaviour {
 	    }
 	 }
    }
+   public int Sides {
+	 get { return walls.Length;}
+   }
    private void AddWall ( Direction wallDirection ) {
 	 float yRotate = ((int)wallDirection % 2 == 0)? 0: 90;
 	 float z = (float)((yRotate > 0)? 0: ((int)wallDirection > 0)? -.5 : .5);
@@ -39,7 +42,7 @@ public class Perimeter : MonoBehaviour {
    }
 	private void RemoveWall (Direction wallDirection) {
 		Transform curWall = this.gameObject.transform.Find(string.Format("Wall{0}", wallDirection));
-		GameObject.Destroy(curWall.gameObject);
+		if (curWall != null) GameObject.Destroy(curWall.gameObject);
 	}
    void Start () {
 //	 //By default has all four walls
